@@ -1,0 +1,15 @@
+[/]
+allow-bold=true
+background-color='#282830303333'
+bold-color='#CDCDCDCDCDCD'
+bold-color-same-as-fg=true
+cursor-background-color='#CDCDCDCDCDCD'
+cursor-colors-set=true
+cursor-foreground-color='#282830303333'
+foreground-color='#CDCDCDCDCDCD'
+highlight-colors-set=false
+palette=['#000000000000', '#A6A600000101', '#0000BBBB0000', '#FEFECDCD2222', '#3A3A9B9BDBDB', '#BBBB0000BBBB', '#0000BBBBBBBB', '#BBBBBBBBBBBB', '#555555555555', '#FFFF00000303', '#9393C8C86363', '#FEFEF8F87474', '#A1A1D7D7FFFF', '#FFFF5555FFFF', '#5555FFFFFFFF', '#FFFFFFFFFFFF']
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Obsidian'

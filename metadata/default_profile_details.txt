@@ -1,0 +1,11 @@
+Default Profile Configuration
+==============================
+
+Profile Name: Vs Code Dark+
+UUID: 934a1a08-5d50-4a6e-aa06-f68537fb48d9
+Font: JetBrains Mono 12
+Use System Font: false
+Background Color: #1E1E1E1E1E1E
+Foreground Color: #CCCCCCCCCCCC
+
+This profile will be set as default on the target machine.

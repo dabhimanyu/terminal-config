@@ -1,0 +1,15 @@
+[/]
+allow-bold=true
+background-color='#141428283838'
+bold-color='#8F8FF5F58686'
+bold-color-same-as-fg=true
+cursor-background-color='#8F8FF5F58686'
+cursor-colors-set=true
+cursor-foreground-color='#141428283838'
+foreground-color='#8F8FF5F58686'
+highlight-colors-set=false
+palette=['#141426263131', '#FFFF23232020', '#3B3BA5A5FFFF', '#E9E9E7E75C5C', '#8F8FF5F58686', '#78781A1AA0A0', '#8F8FF5F58686', '#BABA4646B2B2', '#FFFFF6F68888', '#D4D431312E2E', '#8F8FF5F58686', '#E9E9F0F06D6D', '#3C3C7D7DD2D2', '#82823030A7A7', '#6C6CBCBC6767', '#8F8FF5F58686']
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Cobalt Neon'

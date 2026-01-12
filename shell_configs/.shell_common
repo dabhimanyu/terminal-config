@@ -1,0 +1,33 @@
+# ~/.shell_common
+# Shared configuration between Bash and Zsh
+# ============================================================================
+# ALIASES
+# ============================================================================
+alias activate_ai='source ~/neural_computing/ai_env/bin/activate'
+alias obs='obsidian vault open "/media/user/New Volume/Downloads/##_MarkDown_Files_"'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+
+# Prevent the virtualenv activate script from messing with the prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+
+# ============================================================================
+# PATH ADDITIONS (De-duplicated)
+# ============================================================================
+add_to_path() {
+    if [[ ":$PATH:" != *":$1:"* ]] && [ -d "$1" ]; then
+        export PATH="$1:$PATH"
+    fi
+}
+
+# Add directories safely
+add_to_path "$HOME/bin"
+add_to_path "$HOME/.local/bin"
+
+# Cleanup the function so it doesn't clutter the environment
+unset -f add_to_path
+
+

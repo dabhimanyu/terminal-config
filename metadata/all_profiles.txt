@@ -1,0 +1,46 @@
+GNOME Terminal Profile Inventory
+Generated: Monday 12 January 2026 10:19:48 PM IST
+Source User: user
+Source Hostname: user-HP-Z400-Workstation
+
+DEFAULT_PROFILE_UUID=934a1a08-5d50-4a6e-aa06-f68537fb48d9
+
+Profile Details:
+================
+[1] UUID: 0d1acfd2-a5ad-4cf3-b6e2-6479b227b086
+    Name: "Elic"
+
+[2] UUID: 1a76fc58-1c2a-445d-81af-ba70958b0130
+    Name: "Catppuccin Frappé"
+
+[3] UUID: 24ef11ec-4b5a-4e26-91d8-e9e01543aa61
+    Name: "Cobalt Neon"
+
+[4] UUID: 2ac56504-1765-490e-90a1-1bb842198382
+    Name: "Chalk"
+
+[5] UUID: 4a170f6e-f297-41f6-84e0-d92cdc3adde4
+    Name: "Base4Tone Classic I"
+
+[6] UUID: 75633bd6-995f-4f59-88b7-1bef68fa9dbb
+    Name: "Everblush"
+
+[7] UUID: 934a1a08-5d50-4a6e-aa06-f68537fb48d9
+    Name: "Vs Code Dark+"
+    Status: DEFAULT PROFILE
+
+[8] UUID: b1dcc9dd-5262-4d8d-a863-c897e6d979b9
+    Name: "Abhi_Ubunto_Profile_"
+
+[9] UUID: b4a05e28-1c2d-46a7-849f-4962dd09e454
+    Name: "Dehydration"
+
+[10] UUID: e337cc73-78c4-4fc2-b376-0ae39d4b299a
+    Name: "Spacedust"
+
+[11] UUID: eb5bd426-7bde-479a-a45d-b1eb19d069ca
+    Name: "Atelier Sulphurpool"
+
+[12] UUID: f2a8a447-d7c1-4262-83bf-def35666ab4e
+    Name: "Obsidian"
+

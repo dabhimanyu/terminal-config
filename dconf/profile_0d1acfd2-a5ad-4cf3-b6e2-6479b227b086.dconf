@@ -1,0 +1,15 @@
+[/]
+allow-bold=true
+background-color='#4A4A45453E3E'
+bold-color='#F2F2F2F2F2F2'
+bold-color-same-as-fg=true
+cursor-background-color='#F2F2F2F2F2F2'
+cursor-colors-set=true
+cursor-foreground-color='#4A4A45453E3E'
+foreground-color='#F2F2F2F2F2F2'
+highlight-colors-set=false
+palette=['#303030303030', '#E1E132321A1A', '#6A6AB0B01717', '#FFFFC0C00505', '#72729F9FCFCF', '#ECEC00004848', '#F2F2F2F2F2F2', '#2A2AA7A7E7E7', '#5D5D5D5D5D5D', '#FFFF36361E1E', '#7B7BC9C91F1F', '#FFFFD0D00A0A', '#00007171FFFF', '#FFFF1D1D6262', '#4B4BB8B8FDFD', '#A0A02020F0F0']
+use-theme-background=false
+use-theme-colors=false
+use-theme-transparency=false
+visible-name='Elic'
