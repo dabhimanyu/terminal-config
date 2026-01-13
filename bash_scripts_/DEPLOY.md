@@ -47,6 +47,22 @@ The deployment script will automatically install:
 - `dconf-cli` - GNOME configuration tool
 - `fontconfig` - Font management
 
+### Optional: Version Managers (Recommended)
+
+The shell configurations (v1.1.0-beta+) include initialization for:
+
+**Pyenv** - Python version management
+```bash
+curl https://pyenv.run | bash
+```
+
+**NVM** - Node.js version management (required for Claude Code, Gemini CLI)
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+**Note:** If not installed, initialization is safely skipped. Install these before or after deployment - the shell configs will automatically detect and initialize them.
+
 ---
 
 ## Deployment Steps
@@ -403,7 +419,8 @@ cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/popstas/zsh-command-time.git command-time
 
 # Edit .zshrc and add to plugins array:
-# plugins=(git python pip virtualenv ... command-time)
+# plugins=(git pip virtualenv ... command-time)
+# Note: 'python' plugin removed in v1.1.0-beta (conflicts with pyenv)
 
 # Reload
 source ~/.zshrc
@@ -547,5 +564,5 @@ For issues or improvements, refer to:
 
 ---
 
-**Last Updated**: 2026-01-12  
-**Version**: 1.0
+**Last Updated**: 2026-01-13
+**Version**: 1.1.0-beta
