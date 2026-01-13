@@ -313,9 +313,73 @@ fi
 echo ""
 
 # ============================================================================
-# 10. Backup Files Check
+# 10. Version Manager Verification (Optional)
 # ============================================================================
-echo "10. Backup Files"
+echo "10. Version Managers (Optional)"
+
+# Pyenv verification
+if command -v pyenv &> /dev/null; then
+    pass "Pyenv installed"
+    PYENV_VERSION=$(pyenv --version 2>/dev/null | cut -d' ' -f2)
+    info "Pyenv version: $PYENV_VERSION"
+
+    # Check if pyenv is in PATH
+    if echo "$PATH" | grep -q "pyenv/shims"; then
+        pass "Pyenv shims in PATH"
+    else
+        warn "Pyenv shims not in PATH (check .zshrc/.bashrc initialization)"
+        WARN_COUNT=$((WARN_COUNT + 1))
+    fi
+
+    # Check for installed Python versions
+    PYTHON_VERSIONS=$(pyenv versions --bare 2>/dev/null | wc -l)
+    if [ $PYTHON_VERSIONS -gt 0 ]; then
+        info "Python versions installed via pyenv: $PYTHON_VERSIONS"
+    else
+        info "No Python versions installed via pyenv yet"
+    fi
+else
+    info "Pyenv not installed (optional - install with: curl https://pyenv.run | bash)"
+fi
+
+# NVM verification
+if [ -d "$HOME/.nvm" ]; then
+    pass "NVM directory exists"
+
+    # Check if nvm command is available (requires sourcing)
+    if command -v nvm &> /dev/null || [ -n "$NVM_DIR" ]; then
+        pass "NVM initialized"
+
+        # Try to get NVM version (requires bash/zsh context)
+        if command -v nvm &> /dev/null; then
+            NVM_VERSION=$(nvm --version 2>/dev/null || echo "unknown")
+            info "NVM version: $NVM_VERSION"
+
+            # Check for installed Node versions
+            NODE_VERSIONS=$(nvm list 2>/dev/null | grep -c "v[0-9]" || echo 0)
+            if [ "$NODE_VERSIONS" -gt 0 ]; then
+                info "Node.js versions installed via NVM: $NODE_VERSIONS"
+            else
+                info "No Node.js versions installed via NVM yet"
+            fi
+        fi
+    else
+        warn "NVM not initialized (may require new shell session)"
+        WARN_COUNT=$((WARN_COUNT + 1))
+    fi
+else
+    info "NVM not installed (optional - install with: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash)"
+fi
+
+echo ""
+info "Note: Version managers are optional. Shell configs gracefully skip initialization if not present."
+
+echo ""
+
+# ============================================================================
+# 11. Backup Files Check
+# ============================================================================
+echo "11. Backup Files"
 
 BACKUP_COUNT=$(find ~ -maxdepth 1 -name "*.pre-migration*" 2>/dev/null | wc -l)
 
