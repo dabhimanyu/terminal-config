@@ -12,14 +12,15 @@
 ## Package Contents
 
 ### 1. Shell Configuration Files (`shell_configs/`)
-- `.zshrc` - Zsh runtime configuration
-- `.bashrc` - Bash runtime configuration (fallback/compatibility)
-- `.shell_common` - Shared aliases and PATH logic (Single Source of Truth)
+- `.zshrc` - Zsh runtime configuration with Pyenv/NVM initialization
+- `.bashrc` - Bash runtime configuration with Pyenv/NVM initialization
+- `.shell_common` - Shared aliases and PATH logic (Single Source of Truth, APPEND strategy)
 
 ### 2. Oh-My-Zsh Framework (`oh_my_zsh/`)
 - Complete framework directory
 - Themes preserved
 - Plugins EXCLUDED (will be re-cloned from upstream during deployment)
+- **Note:** `python` plugin removed in v1.1.0-beta to prevent pyenv conflicts
 
 ### 3. Font Assets (`fonts/`)
 - JetBrains Mono font family: 34 .ttf files
@@ -54,6 +55,26 @@ alias l='ls -CF'
 - Username differs
 - Mount points differ
 - Virtual environment paths differ
+
+---
+
+## Version Manager Dependencies
+
+The shell configurations initialize the following version managers if present:
+
+### Pyenv (Python Version Manager)
+- **Purpose:** Manage multiple Python versions per project
+- **Initialization:** Both `.zshrc` and `.bashrc` include pyenv init commands
+- **Installation:** Not included in deployment - must be installed separately
+- **Install command:** `curl https://pyenv.run | bash`
+
+### NVM (Node Version Manager)
+- **Purpose:** Manage multiple Node.js versions (required for Claude Code, Gemini CLI)
+- **Initialization:** Both `.zshrc` and `.bashrc` include NVM init commands
+- **Installation:** Not included in deployment - must be installed separately
+- **Install command:** `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash`
+
+**Graceful degradation:** If version managers are not installed, initialization commands are safely skipped (no errors).
 
 ---
 
