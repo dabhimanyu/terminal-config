@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0-beta] - 2026-01-13
+
+### Fixed
+- **CRITICAL:** Removed anti-recursion guard from `.zshrc` that prevented oh-my-zsh from loading after `exec zsh`, breaking custom prompt
+- **CRITICAL:** Removed oh-my-zsh `python` plugin that created function wrapper bypassing pyenv shims
+- **BUG:** Modified `.shell_common` to APPEND user bins instead of PREPEND, ensuring version managers always take precedence
+
+### Added
+- **NVM initialization:** Added to both `.zshrc` and `.bashrc` for Node.js version management (Claude Code, Gemini CLI support)
+- **Pyenv initialization:** Added to `.bashrc` for Python version management
+- **Comprehensive inline documentation:** Extensive comments explaining version manager initialization order and PATH precedence rules
+
+### Known Issues
+- Cosmetic duplicate in PATH: `/home/user/.pyenv/plugins/pyenv-virtualenv/shims` appears twice (no functional impact)
+
+### Testing Status
+- Python 3.12.1 via pyenv: ✓ Working
+- Node.js 24.12.0 via NVM: ✓ Working
+- Custom prompt (green ➜): ✓ Working
+- Aliases (obs, activate_ai, ll): ✓ Working
+
+---
+
 ## [1.0.0] - 2026-01-12
 
 ### Added
@@ -48,3 +71,10 @@ All notable changes to this project will be documented in this file.
 - Anti-recursion guard breaks prompt on reload
 - Oh-my-zsh python plugin conflicts with pyenv
 - .shell_common PATH order allows future conflicts
+### Critical Bugs Discovered Post-Release
+
+⚠️ **This release contained critical bugs fixed in v1.1.0-beta:**
+- Anti-recursion guard in `.zshrc` broke oh-my-zsh prompt after `exec zsh`
+- Oh-my-zsh `python` plugin conflicted with pyenv shims
+- `.shell_common` PATH order (PREPEND) allowed user bins to override version managers
+- Missing NVM initialization prevented Node.js version management
