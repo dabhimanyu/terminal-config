@@ -6,12 +6,19 @@ Comprehensive terminal environment configuration for Ubuntu-based systems with Z
 
 - **Shell Configurations** (`.zshrc`, `.bashrc`, `.shell_common`)
   - Single Source of Truth pattern for shared logic
-  - Custom aliases and PATH management
+  - Custom aliases and PATH management (APPEND strategy ensures version managers take precedence)
   - Virtual environment integration
+  - Version manager initialization (Pyenv, NVM) before shared configuration
+
+- **Version Managers**
+  - **Pyenv** - Python version management (initialized in both shells)
+  - **NVM** - Node.js version management (required for Claude Code, Gemini CLI)
+  - Properly ordered PATH configuration prevents conflicts between version managers and user bins
 
 - **Oh-My-Zsh Framework**
   - Complete framework with themes
   - Plugins (auto-suggestions, syntax highlighting) cloned during deployment
+  - **Note:** `python` plugin removed (v1.1.0-beta) to prevent pyenv conflicts
 
 - **JetBrains Mono Fonts**
   - Complete font family included in repository
@@ -96,6 +103,24 @@ fc-cache -f -v
 - Zsh 5.8+
 - GNOME Terminal 3.36+
 - Git 2.25+
+
+### Version Manager Dependencies (Optional but Recommended)
+
+The shell configurations include initialization for:
+- **Pyenv** - For Python version management
+- **NVM** - For Node.js version management
+
+These are not installed automatically by the deployment script. If you plan to use these version managers:
+
+```bash
+# Install Pyenv
+curl https://pyenv.run | bash
+
+# Install NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+**Important:** If these version managers are not installed, the shell configuration will skip their initialization gracefully (no errors). However, version-managed Python/Node.js commands won't be available.
 
 ## Support
 

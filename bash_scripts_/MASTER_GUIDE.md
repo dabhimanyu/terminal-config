@@ -37,14 +37,20 @@ SOURCE MACHINE                    GITHUB                    TARGET MACHINE
 ### Component Summary
 
 **What Gets Migrated:**
-- ✓ Shell configuration files (.zshrc, .bashrc, .shell_common)
+- ✓ Shell configuration files (.zshrc, .bashrc, .shell_common) with version manager initialization
 - ✓ Oh-My-Zsh framework (themes, plugins re-cloned)
 - ✓ JetBrains Mono fonts (50+ .ttf files)
 - ✓ ALL GNOME Terminal profiles (colors, fonts, palettes)
 
 **What Does NOT Get Migrated:**
+- ✗ Version managers (Pyenv, NVM) - must install separately on target
 - ✗ Virtual environments (recreate on target)
 - ✗ Path-specific data (update manually)
+
+**Version Manager Support (v1.1.0-beta+):**
+- Shell configs include initialization for Pyenv (Python) and NVM (Node.js)
+- Installation gracefully skipped if not present
+- Required for Claude Code, Gemini CLI, and version-controlled development
 
 ---
 

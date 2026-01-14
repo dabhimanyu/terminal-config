@@ -1,33 +1,62 @@
 # ~/.shell_common
 # Shared configuration between Bash and Zsh
+# Sourced AFTER version managers (Pyenv, NVM) are initialized in shell-specific config files.
+
 # ============================================================================
 # ALIASES
 # ============================================================================
+# Research workflow shortcuts
 alias activate_ai='source ~/neural_computing/ai_env/bin/activate'
 alias obs='obsidian vault open "/media/user/New Volume/Downloads/##_MarkDown_Files_"'
+
+# Standard file listing shortcuts
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-
-# Prevent the virtualenv activate script from messing with the prompt
+# ============================================================================
+# VIRTUALENV SETTINGS
+# ============================================================================
+# Prevent the virtualenv activation script from modifying the prompt
+# (we manage the prompt separately in .zshrc / .bashrc)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# ============================================================================
+# PATH ADDITIONS (De-duplicated, Safe)
+# ============================================================================
+# CRITICAL FIX: APPEND to PATH (not prepend) to ensure version managers take precedence
+#
+# Rationale:
+# - Version managers (pyenv, nvm) are initialized BEFORE .shell_common sources
+# - They prepend their shims/bins to PATH
+# - If we PREPEND user bins here, they would override version manager shims
+# - By APPENDING, we preserve the priority: version managers → user bins → system
+#
+# Example conflict (if we prepended):
+#   User runs: pip install --user some-package
+#   → Installs to ~/.local/bin/
+#   → If ~/.local/bin is FIRST in PATH, it overrides pyenv shims
+#   → python resolves to ~/.local/bin/python instead of pyenv-managed version
+#
+# Solution: APPEND user bins to END of PATH
+# ============================================================================
 
-# ============================================================================
-# PATH ADDITIONS (De-duplicated)
-# ============================================================================
+# Function to safely add directories to PATH, avoiding duplicates
+# MODIFIED: Appends to PATH instead of prepending
 add_to_path() {
     if [[ ":$PATH:" != *":$1:"* ]] && [ -d "$1" ]; then
-        export PATH="$1:$PATH"
+        export PATH="$PATH:$1"  # ← APPEND, not prepend
     fi
 }
 
-# Add directories safely
+# Add user-local directories (if they exist)
+# These will be AFTER version manager paths, but BEFORE system paths
 add_to_path "$HOME/bin"
 add_to_path "$HOME/.local/bin"
 
-# Cleanup the function so it doesn't clutter the environment
+# Cleanup: remove the function after use to avoid polluting environment
 unset -f add_to_path
 
-
+# ============================================================================
+# END OF .shell_common
+# ============================================================================

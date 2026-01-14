@@ -106,8 +106,8 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# this, if it's already enabled in /etc/bash_completion and /etc/profile
+# sources /etc/bash_completion).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -116,7 +116,30 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# ============================================================================
+# VERSION MANAGERS (Bash-specific initialization)
+# ============================================================================
+# Unlike Zsh (which uses oh-my-zsh), Bash has no plugin system.
+# Version managers are initialized here, BEFORE .shell_common.
+# Order: Pyenv first, then NVM (both prepend to PATH).
 
+# 1. PYENV (Python Version Manager)
+# Adds pyenv/bin and pyenv/shims to PATH, enabling `python` to resolve through pyenv.
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+eval "$(pyenv virtualenv-init -)"
 
-# Source shared configuration
+# 2. NVM (Node Version Manager)
+# Adds nvm/versions/node/*/bin to PATH (or fallback to system node).
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# ============================================================================
+# Shared Configuration (Aliases, Virtualenv, PATH tweaks)
+# ============================================================================
+# .shell_common sourced LAST, after version managers are ready.
 [ -f ~/.shell_common ] && source ~/.shell_common
+
+# End of .bashrc
